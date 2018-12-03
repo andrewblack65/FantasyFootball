@@ -1,0 +1,17 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+</head>
+
+<div class='topbar'>
+    <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]="['./mainpage']">Main Page</button>
+        <button mat-menu-item [routerLink]="['./fantasyinfo']">My Teams</button>
+        <button mat-menu-item [routerLink]="['./proposal']">Proposals</button>
+        <button mat-menu-item [routerLink]="['./freeagents']">Free Agents</button>
+    </mat-menu>
+    <button class='logout' (click)='logout()' mat-button>Logout</button>
+</div>
+<br>
+<router-outlet></router-outlet>

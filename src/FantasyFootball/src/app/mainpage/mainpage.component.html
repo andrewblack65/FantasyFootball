@@ -1,0 +1,80 @@
+<div class="center">
+  <h1>Welcome to your <b>Awesome</b> Fantasy Football League</h1>
+  <br>
+  <h3>NFL Matchups</h3>
+  <table mat-table [dataSource]='NFLMatchups'>
+      
+      <ng-container matColumnDef="Week">
+        <th mat-header-cell *matHeaderCellDef> Week </th>
+        <td mat-cell *matCellDef="let matchup"> {{matchup.Week}} </td>
+      </ng-container>
+
+      
+      <ng-container matColumnDef="Team1">
+        <th mat-header-cell *matHeaderCellDef> Team 1 </th>
+        <td mat-cell *matCellDef="let matchup">{{matchup.Team1}}</td>
+      </ng-container>
+
+   
+      <ng-container matColumnDef="Score1">
+        <th mat-header-cell *matHeaderCellDef> Score </th>
+        <td mat-cell *matCellDef="let matchup"> {{matchup.Score1}} </td>
+      </ng-container>
+
+      
+      <ng-container matColumnDef="Team2">
+        <th mat-header-cell *matHeaderCellDef> Team 2 </th>
+        <td mat-cell *matCellDef="let matchup">{{matchup.Team2}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Score2">
+        <th mat-header-cell *matHeaderCellDef> Score </th>
+        <td mat-cell *matCellDef="let matchup"> {{matchup.Score2}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+  <br>
+  <mat-divider></mat-divider>
+  <br>
+  <h3>Fantasy Matchups</h3>
+  <table mat-table [dataSource]='myMatchups'>
+      
+      <ng-container matColumnDef="Week">
+        <th mat-header-cell *matHeaderCellDef> Week </th>
+        <td mat-cell *matCellDef="let matchup"> {{matchup.Week}} </td>
+      </ng-container>
+
+      
+      <ng-container matColumnDef="Team1">
+        <th mat-header-cell *matHeaderCellDef> Team 1 </th>
+        <td mat-cell *matCellDef="let matchup"><a (click)="openDialog(matchup.FantasyID1)">  {{matchup.Team1}}</a> </td>
+      </ng-container>
+
+   
+      <ng-container matColumnDef="Score1">
+        <th mat-header-cell *matHeaderCellDef> Score </th>
+        <td mat-cell *matCellDef="let matchup"> {{(scoreMap.get(matchup.FantasyID1))?.score}} </td>
+      </ng-container>
+
+      
+      <ng-container matColumnDef="Team2">
+        <th mat-header-cell *matHeaderCellDef> Team 2 </th>
+        <td mat-cell *matCellDef="let matchup"><a (click)="openDialog(matchup.FantasyID2)">  {{matchup.Team2}}</a> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Score2">
+        <th mat-header-cell *matHeaderCellDef> Score </th>
+        <td mat-cell *matCellDef="let matchup"> {{(scoreMap.get(matchup.FantasyID2))?.score}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+
+</div>
+
+<br>

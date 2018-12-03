@@ -1,0 +1,20 @@
+.center {
+    margin: auto;
+    width: 85%;
+}
+
+.card1 {
+    margin: auto;
+    float: left;
+    width: 45%;
+}
+
+.card2 {
+    margin: auto;
+    float: right;
+    width: 45%;
+}
+
+mat-card {
+    fill: gainsboro;
+}

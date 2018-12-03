@@ -1,0 +1,87 @@
+<div>
+
+</div>
+<br>
+<div class="center">
+  <mat-tab-group #tab (selectedTabChange)="GetTeam($event)">
+      <mat-tab *ngFor="let team of owner" label="{{team?.fanName}}">
+        <br><br>
+          <mat-card>
+            <mat-card-content>
+              <div class="form-group row">
+                  <div class="col-md"><b>Dropping:</b> {{dropping?.name}}</div>
+                  <div class="col-md"><b>Adding:</b> {{adding?.name}}</div>
+                  <button mat-raised-button (click)="AddDrop(adding, dropping)">Add/Drop!</button>
+              </div>
+              <br>
+            </mat-card-content>
+          </mat-card>
+          <br>
+          <mat-divider></mat-divider>
+          <br>
+          <div class="card1">
+              <mat-card>
+                <mat-card-header>
+                  <mat-card-title>
+                    Player List
+                  </mat-card-title>
+                </mat-card-header>
+                <mat-divider></mat-divider>
+                <mat-card-content>
+                    <mat-list dense>
+                      <mat-list-item *ngFor="let player of players">
+                        <div class="form-group row"> 
+                          <div class="col-md">
+                            <b>{{player?.name}}</b>
+                            <span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                              Position: {{player?.pos}} | Score: {{player?.score}}
+                            </span>
+                          </div>
+                        </div>
+                        <div style="margin-left: auto;">
+                            <button class="btn-sm" mat-raised-button (click)="DropPlayer(player)">Drop</button>
+                        </div>
+                      </mat-list-item>
+                    </mat-list>
+                </mat-card-content>
+              </mat-card>
+            </div>
+
+            <div class="card2">
+                <mat-card>
+                  <mat-card-header>
+                    <mat-card-title>
+                      Freeagents List
+                    </mat-card-title>
+                    <mat-form-field>
+                        <mat-select placeholder="Filter Position">
+                          <mat-option *ngFor="let position of positions" [value]="position.val" (click)="Filter(position.val)">
+                            {{position.view}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                  </mat-card-header>
+                  <mat-divider></mat-divider>
+                  <mat-card-content>
+                      <mat-list dense>
+                          <mat-list-item *ngFor="let freeagent of freeagents">
+                            <div class="form-group row"> 
+                              <div class="col-md">
+                                <b>{{freeagent?.name}}</b>
+                                <span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                  Position: {{freeagent?.pos}} | Score: {{freeagent?.score}}
+                                </span>
+                              </div>
+                            </div>
+                            <div style="margin-left: auto;">
+                                <button class="btn-sm" (click)="AddPlayer(freeagent)" mat-raised-button>Add</button>
+                            </div>
+                          </mat-list-item>
+                        </mat-list>
+                  </mat-card-content>
+                </mat-card>
+            </div>
+            <br>
+      </mat-tab>
+  </mat-tab-group>
+</div>

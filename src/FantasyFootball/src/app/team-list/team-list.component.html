@@ -1,0 +1,26 @@
+<div>
+  <h2 mat-dialog-title>Players</h2>
+  <hr>
+  <mat-dialog-content>
+  <mat-list>
+    <mat-list-item>
+        <p class="listItem">Name</p>
+        <p class="listItem">Position</p>
+        <p class="listItem">Score</p>
+  
+    </mat-list-item>
+
+    <mat-list-item *ngFor="let player of this.data.playerList">
+      <p class="listItem">{{player.name}}</p>
+      <p class="listItem">{{player.pos}}</p>
+      <p class="listItem">{{player.score}}</p>
+
+
+     </mat-list-item>
+ </mat-list>
+ <mat-dialog-actions>
+    <button mat-raised-button (click)="onCloseConfirm()">CONFIRM</button>&nbsp;
+ 
+  </mat-dialog-actions>
+</mat-dialog-content>
+</div>

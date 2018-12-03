@@ -1,0 +1,25 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+  <img width="300" alt="Angular Logo" src="../assets/JVfootball.png">
+</div>
+<br>
+<div style="text-align:center">
+  <div>
+    <h3>Login Below:</h3>
+    <form>
+      <mat-form-field>
+        <input matInput #email placeholder='Email'>
+      </mat-form-field>
+      <div></div>
+      <mat-form-field>
+        <input matInput type='password' #password placeholder='Password'>
+      </mat-form-field>
+    </form>
+    <button mat-raised-button (click)='signIn(email.value, password.value)'>
+      Login
+    </button>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div>
+
+</div>
+<br>
+<div class="center">
+  <h1>View Your Teams</h1>
+  <mat-tab-group (selectedTabChange)="TabChange($event)">
+      <mat-tab *ngFor="let team of owner" label="{{team?.fanName}}">
+        <br><br>
+        </mat-tab>
+      </mat-tab-group>
+      <div class="form-group row">
+          <h3 class="col-md">Your Teams Weekly Score: <b >{{score?.score}}</b></h3>
+      </div>
+</div>
+
+<table mat-table [dataSource]="players" class="mat-elevation-z8; center">
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef> Position </th>
+    <td mat-cell *matCellDef="let element"> {{element.pos}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="nflName">
+    <th mat-header-cell *matHeaderCellDef> NFL Team </th>
+    <td mat-cell *matCellDef="let element"> {{element.nflName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="weekNum">
+    <th mat-header-cell *matHeaderCellDef> Week </th>
+    <td mat-cell *matCellDef="let element"> {{element.weekNum}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="score">
+    <th mat-header-cell *matHeaderCellDef> Score </th>
+    <td mat-cell *matCellDef="let element"> {{element.score}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="projection">
+    <th mat-header-cell *matHeaderCellDef> Projected Score </th>
+    <td mat-cell *matCellDef="let element"> {{element.projection | number}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="nflScore">
+    <th mat-header-cell *matHeaderCellDef> NFL Team Score </th>
+    <td mat-cell *matCellDef="let element"> {{element.nflScore}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
+
+
+
+

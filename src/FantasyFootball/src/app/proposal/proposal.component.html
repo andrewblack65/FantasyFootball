@@ -1,0 +1,144 @@
+<div class='center'>
+  <br>
+  <div>
+  <mat-card>
+    <mat-card-header>
+        <div class="form-group row">
+            <h3>Select from your Managed Teams:</h3> &nbsp; &nbsp; &nbsp; &nbsp;
+            <mat-button-toggle-group *ngIf="owner">
+              <mat-button-toggle (click)="SwitchTeam(owner[0].fantasyID)" >Team: {{owner[0]?.fanName}}</mat-button-toggle>
+              <mat-button-toggle (click)="SwitchTeam(owner[1].fantasyID)" >Team: {{owner[1]?.fanName}}</mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+    </mat-card-header>
+  </mat-card>
+  <br>
+  </div>
+  <mat-tab-group (selectedTabChange)="TabChanged($event)">
+    <mat-tab label="Propose a Trade">
+      <br>
+      <mat-card>
+          <mat-card-title>
+            <b>Trading Block</b>
+          </mat-card-title>
+          <mat-card-content>
+            <div class="form-group row">
+                <div class="col-md">{{trading?.name}}</div>
+                <div class="col-md"><b> &nbsp; for... &nbsp;</b></div>
+                <div class="col-md">{{adding?.name}}</div>
+                <button mat-raised-button (click)="SubmitProposal()">Submit Trade</button>
+            </div>
+            <br>
+          </mat-card-content>
+        </mat-card>
+        <br>
+      <div class="card1">
+        <mat-card>
+          <mat-card-title>
+            Players on Your Team
+          </mat-card-title>
+          <mat-divider></mat-divider>
+          <mat-card-content>
+              <mat-list dense>
+                  <mat-list-item *ngFor="let player of players">
+                    <div class="form-group row"> 
+                      <div class="col-md">
+                        <b>{{player?.name}}</b>
+                        <span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                          Position: {{player?.pos}} | Score: {{player?.score}}
+                        </span>
+                      </div>
+                    </div>
+                    <div style="margin-left: auto;">
+                        <button class="btn-sm" (click)="Trading(player)" mat-raised-button >+</button>
+                    </div>
+                  </mat-list-item>
+              </mat-list>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="card2">
+        <mat-card>
+          <mat-card-title>
+            Owned Players
+          </mat-card-title>
+          <mat-card-content>
+              <mat-list dense>
+                  <mat-list-item *ngFor="let leagueplayer of leagueplayers">
+                    <div class="form-group row"> 
+                      <div class="col-md">
+                        <b>{{leagueplayer?.name}}</b>
+                        <span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                          Position: {{leagueplayer?.pos}} | Score: {{leagueplayer?.score}}
+                        </span>
+                      </div>
+                    </div>
+                    <div style="margin-left: auto;">
+                        <button class="btn-sm" (click)="Aquiring(leagueplayer)" mat-raised-button>+</button>
+                    </div>
+                  </mat-list-item>
+                </mat-list>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-tab>
+    <mat-tab label="Open Proposals & Completed Trades">
+      <br>
+      <div class="card1">
+        <mat-card>
+          <mat-card-header>
+              <mat-card-title>
+                  Current Proposals
+              </mat-card-title>
+              <br>
+              <div clas="form-group row">
+                <b class="col-sm">Vote on: &nbsp;</b>
+                <mat-select class="col-sm" placeholder="ID">
+                    <mat-option *ngFor="let propID of proposalVoting" [value]="propID.proposalID" (click)="Vote(propID.proposalID)">
+                        {{propID.proposalID}}
+                    </mat-option>
+                  </mat-select>
+              </div>
+          </mat-card-header>
+          <mat-divider></mat-divider>
+          <mat-card-content>
+              <mat-list dense>
+                  <mat-list-item *ngFor="let proposal of proposals">
+                    <div class="form-group row"> 
+                      <div class="col-md">
+                        <b>{{proposal?.proposalID}}</b>
+                        <span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                          <b>Date:</b> {{proposal?.proposalDate | date: mediumDate}} | <b>Player:</b> {{proposal?.name}} | <b>Votes:</b> {{proposal?.approval}}
+                        </span>
+                      </div>
+                    </div>
+                  </mat-list-item>
+              </mat-list>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="card2">
+        <mat-card>
+          <mat-card-title>
+            Past Trades
+          </mat-card-title>
+          <mat-divider></mat-divider>
+          <mat-card-content>
+              <mat-list dense>
+                  <mat-list-item *ngFor="let trade of trades">
+                    <div class="form-group row"> 
+                      <div class="col-lg">
+                        <b>{{trade?.tradeID}}</b>
+                        <span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                          <b>Resolved:</b> {{trade?.resolveDate | date: mediumDate}} | <b>Player:</b> {{trade?.name}}
+                        </span>
+                      </div>
+                    </div>
+                  </mat-list-item>
+              </mat-list>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
